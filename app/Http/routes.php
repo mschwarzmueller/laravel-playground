@@ -21,7 +21,7 @@ Route::group(['middleware' => 'web'], function () {
         'uses' => 'AppController@getAuthorPage',
         'as' => 'author',
         'middleware' => 'roles',
-        'roles' => ['Author', 'Admin']
+        'roles' => ['Admin', 'Author']
     ]);
 
     Route::get('/author/generate-article', [

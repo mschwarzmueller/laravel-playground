@@ -21,15 +21,13 @@ class AuthController extends Controller
 
     public function postSignUp(Request $request)
     {
-        $role_user = Role::where('name', 'User')->first();
         $user = new User();
         $user->first_name = $request['first_name'];
         $user->last_name = $request['last_name'];
         $user->email = $request['email'];
         $user->password = $request['password'];
         $user->save();
-        // Every user is a "normal" user by default
-        $user->roles()->attach($role_user);
+        $user->roles()->attach(Role::where('name', 'User')->first());
         Auth::login($user);
         return redirect()->route('main');
     }
